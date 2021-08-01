@@ -1,3 +1,9 @@
+#DS Store
+.DS_Store
+
+#Configuration Files
+config.py (or whatever)
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
