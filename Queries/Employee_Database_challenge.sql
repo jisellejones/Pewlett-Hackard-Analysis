@@ -53,7 +53,7 @@ WHERE (de.to_date = '9999-01-01')
 ORDER BY e.emp_no ASC, ti.from_date DESC;
 
 
--- ---- Code for Summary ----
+-- ---- Code for Last bullet results section ----
 
 -- Create a table to find the count of employees by title who were born in 1965.
 SELECT COUNT (title), title
@@ -62,19 +62,26 @@ FROM mentorship_eligibilty
 GROUP BY title
 ORDER BY count DESC;
 
--- Create table to find all employees not nearing retirement age named "emplyees_not_retirement"
-SELECT e.emp_no,
+-- ---- Code for Summary Section ----
+
+-- Create table to find all employees not nearing retirement age named "emp_not_retiring"
+SELECT DISTINCT ON (e.emp_no)
+		e.emp_no,
 		e.first_name,
 		e.last_name,
-		t.title,
-		t.from_date,
-		t.to_date
-INTO emplyees_not_retirement
+		e.birth_date,
+		de.from_date,
+		de.to_date,
+		ti.title
+INTO emp_not_retiring
 FROM employees AS e
-LEFT JOIN titles AS t
-ON e.emp_no = t.emp_no
-WHERE NOT (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-ORDER BY e.emp_no;
+	INNER JOIN dept_emp AS de
+		ON (e.emp_no = de.emp_no)
+	INNER JOIN titles AS ti
+		ON (e.emp_no = ti.emp_no)
+WHERE (de.to_date = '9999-01-01')
+	AND NOT(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+ORDER BY e.emp_no ASC, ti.from_date DESC;
 
 -- Create a table from emplyees_not_retirement table that filters for most recent title
 SELECT DISTINCT ON (emp_no) emp_no,
@@ -82,12 +89,12 @@ first_name,
 last_name,
 title
 INTO unique_titles_not_retiring
-FROM emplyees_not_retirement
+FROM emp_not_retiring
 ORDER BY emp_no ASC, to_date DESC;
 
 -- Create a table that counts the number of non-retiring employees in current positions
 SELECT COUNT(title), title
-Into titles_all_emp_not_retiring
+Into titles_count_emp_not_retiring
 FROM unique_titles_not_retiring
 GROUP BY title
 ORDER BY count DESC;

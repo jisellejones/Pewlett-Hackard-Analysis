@@ -83,7 +83,7 @@ FROM retirement_info as ri
 LEFT JOIN dept_emp as de
 ON ri.emp_no = de.emp_no;
 
--- Create nwe table containing only current employees eligible for retirement
+-- Create new table containing only current employees eligible for retirement
 SELECT ri.emp_no,
     ri.first_name,
     ri.last_name,
@@ -172,3 +172,4 @@ SELECT *
 FROM dept_info
 WHERE dept_name IN ('Sales', 'Development')
 ORDER BY dept_name ASC;
+

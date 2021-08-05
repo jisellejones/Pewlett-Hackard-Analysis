@@ -49,18 +49,21 @@ According to the analysis Pewlett Hackard can anticipate 90,398 roles that will 
 
 A separate survey could be sent to Staff, Technique Leaders, Assistant Engineers, and Engineers born in 1965 to determine whom, if any, are interested in a mentorship program to prepare them for Senior level roles or managerial roles.
 
-Due to the small number of employees born within 1965, Pewlett Hackard may want to consider optimizing talent within the company, so the analysis was extended to reach beyond birth year and consider all employees not of retirement age. Table 3 shows these results.
+Due to the small number of employees born within 1965, Pewlett Hackard may want to consider optimizing talent within the company, so the analysis was extended to reach beyond birth year and consider all employees not of retirement age. Three more queries were performed for this analysis. One to remove the employees nearing retirement age, one to pull employee's current roles, and a final one to show the counts for current employees in their current roles.
+
+
+Table 3 shows these results.
 
 *Table 3*
 
 | Title | Number of Employees |
 | ----- | -----------------------------------|
-| Senior Engineer | 68,330|
-| Senior Staff | 64,589 |
-| Engineer | 33,084 |
-| Staff | 28,889 |
-| Technique Leader | 10,653 |
-| Assistant Engineer | 4,074 |
+| Senior Engineer | 60,023|
+| Senior Staff | 57,098 |
+| Engineer | 21,698 |
+| Staff | 17,890 |
+| Technique Leader | 8,452 |
+| Assistant Engineer | 2,498 |
 | Manager | 7 |
 
 This still leaves Pewlett Hackard in the position of determining how to fill a large wave of open roles with viable candidates.
