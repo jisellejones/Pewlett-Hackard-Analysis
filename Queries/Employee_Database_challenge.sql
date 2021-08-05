@@ -1,3 +1,5 @@
+-- ---- Code for Deliverable 1 ----
+
 -- Create a table to show all employees within retirement age and their titles
 SELECT e.emp_no,
 		e.first_name,
@@ -29,7 +31,9 @@ FROM unique_titles
 GROUP BY title
 ORDER BY count DESC;
 
--- Create a Mentorship Eligibility table that holds the employees who are eligible for a mentorship program
+-- ---- Code for deliverable 2 ----
+
+-- Create a Mentorship Eligibility table that holds the employees are eligible for a mentorship program (born in 1965).
 SELECT DISTINCT ON (e.emp_no)
 		e.emp_no,
 		e.first_name,
@@ -47,3 +51,43 @@ FROM employees AS e
 WHERE (de.to_date = '9999-01-01')
 	AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no ASC, ti.from_date DESC;
+
+
+-- ---- Code for Summary ----
+
+-- Create a table to find the count of employees by title who were born in 1965.
+SELECT COUNT (title), title
+INTO count_ment_elg
+FROM mentorship_eligibilty
+GROUP BY title
+ORDER BY count DESC;
+
+-- Create table to find all employees not nearing retirement age named "emplyees_not_retirement"
+SELECT e.emp_no,
+		e.first_name,
+		e.last_name,
+		t.title,
+		t.from_date,
+		t.to_date
+INTO emplyees_not_retirement
+FROM employees AS e
+LEFT JOIN titles AS t
+ON e.emp_no = t.emp_no
+WHERE NOT (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+ORDER BY e.emp_no;
+
+-- Create a table from emplyees_not_retirement table that filters for most recent title
+SELECT DISTINCT ON (emp_no) emp_no,
+first_name,
+last_name,
+title
+INTO unique_titles_not_retiring
+FROM emplyees_not_retirement
+ORDER BY emp_no ASC, to_date DESC;
+
+-- Create a table that counts the number of non-retiring employees in current positions
+SELECT COUNT(title), title
+Into titles_all_emp_not_retiring
+FROM unique_titles_not_retiring
+GROUP BY title
+ORDER BY count DESC;
