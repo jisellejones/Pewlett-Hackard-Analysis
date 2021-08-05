@@ -1,4 +1,4 @@
--- ---- Code for Deliverable 1 ----
+-- ---- Queries for Deliverable 1 ----
 
 -- Create a table to show all employees within retirement age and their titles
 SELECT e.emp_no,
@@ -31,7 +31,7 @@ FROM unique_titles
 GROUP BY title
 ORDER BY count DESC;
 
--- ---- Code for deliverable 2 ----
+-- ---- Query for deliverable 2 ----
 
 -- Create a Mentorship Eligibility table that holds the employees are eligible for a mentorship program (born in 1965).
 SELECT DISTINCT ON (e.emp_no)
@@ -53,7 +53,7 @@ WHERE (de.to_date = '9999-01-01')
 ORDER BY e.emp_no ASC, ti.from_date DESC;
 
 
--- ---- Code for Last bullet results section ----
+-- ---- Query for Last bullet in results section ----
 
 -- Create a table to find the count of employees by title who were born in 1965.
 SELECT COUNT (title), title
@@ -62,7 +62,7 @@ FROM mentorship_eligibilty
 GROUP BY title
 ORDER BY count DESC;
 
--- ---- Code for Summary Section ----
+-- ---- Queries for Summary Section ----
 
 -- Create table to find all employees not nearing retirement age named "emp_not_retiring"
 SELECT DISTINCT ON (e.emp_no)
